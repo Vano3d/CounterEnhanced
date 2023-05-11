@@ -50,13 +50,11 @@ class ViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
       super.viewWillAppear(animated)
         updateLabel()
-        labelCount.font.withSize(45)
         buttonMinus.tintColor = .blue
         buttonPlus.tintColor = .red
         clearButton.setTitle("Обнулить", for: .normal)
         clearButton.tintColor = .darkGray
         historyText.text = "История изменений:\n"
-        historyText.font?.withSize(36)
     }
     @IBAction func clickClearButton(_ sender: Any) {
         count = 0
