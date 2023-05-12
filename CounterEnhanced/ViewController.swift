@@ -20,7 +20,7 @@ extension Date {
 }
 
 class ViewController: UIViewController {
-    
+// текстовые константы
     let historyCleared = "значение сброшено"
     let historyReduced = "значение изменено на -1"
     let historyIncreased = "значение изменено на +1"
@@ -33,11 +33,13 @@ class ViewController: UIViewController {
     @IBOutlet weak var buttonMinus: UIButton!
     
     var count = 0
-    
+// функция обновляет счётчик в label
     func updateLabel() {
         labelCount.text = "Значение счётчика: \(count)"
     }
     
+    
+// функция вызывает текущую дату и время
     func currTime() -> String {
         return Date().localDate()
     }
@@ -49,6 +51,7 @@ class ViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
       super.viewWillAppear(animated)
+//настройка внешнего вида View
         updateLabel()
         buttonMinus.tintColor = .blue
         buttonPlus.tintColor = .red
