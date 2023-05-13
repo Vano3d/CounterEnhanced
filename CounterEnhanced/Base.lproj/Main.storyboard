@@ -93,8 +93,8 @@
                         <outlet property="buttonMinus" destination="S7e-0X-KJR" id="noe-FH-J9o"/>
                         <outlet property="buttonPlus" destination="Abl-0w-BdE" id="wZI-E4-XTE"/>
                         <outlet property="clearButton" destination="v5W-6G-Z7K" id="5Hm-Ya-jMh"/>
-                        <outlet property="historyText" destination="iDe-HF-RrS" id="atH-Gd-ScL"/>
-                        <outlet property="labelCount" destination="Fcr-RO-3Ax" id="qyS-Ey-w1k"/>
+                        <outlet property="counterLabel" destination="Fcr-RO-3Ax" id="qyS-Ey-w1k"/>
+                        <outlet property="historyTextView" destination="iDe-HF-RrS" id="atH-Gd-ScL"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

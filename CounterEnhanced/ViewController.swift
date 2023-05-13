@@ -7,9 +7,9 @@
 
 import UIKit
 
-// Настройка вывода даты в нужном формате
+
 extension Date {
-    func localDate() -> String {
+    func getLocalDateInString() -> String {
         let now = Date()
         let formatter = DateFormatter()
         formatter.locale = Locale(identifier: "ru_RU")
@@ -20,69 +20,56 @@ extension Date {
 }
 
 class ViewController: UIViewController {
-// текстовые константы
-    let historyCleared = "значение сброшено"
-    let historyReduced = "значение изменено на -1"
-    let historyIncreased = "значение изменено на +1"
-    let historyTryToZero = "попытка уменьшить значение счётчика ниже 0"
+    private let historyCleared = "значение сброшено"
+    private let historyReduced = "значение изменено на -1"
+    private let historyIncreased = "значение изменено на +1"
+    private let historyTryToZero = "попытка уменьшить значение счётчика ниже 0"
     
-    @IBOutlet weak var labelCount: UILabel!
-    @IBOutlet weak var historyText: UITextView!
-    @IBOutlet weak var clearButton: UIButton!
-    @IBOutlet weak var buttonPlus: UIButton!
-    @IBOutlet weak var buttonMinus: UIButton!
+    @IBOutlet weak private var counterLabel: UILabel!
+    @IBOutlet weak private var historyTextView: UITextView!
+    @IBOutlet weak private var clearButton: UIButton!
+    @IBOutlet weak private var buttonPlus: UIButton!
+    @IBOutlet weak private var buttonMinus: UIButton!
     
-    var count = 0
-// функция обновляет счётчик в label
-    func updateLabel() {
-        labelCount.text = "Значение счётчика: \(count)"
-    }
-    
-    
-// функция вызывает текущую дату и время
-    func currTime() -> String {
-        return Date().localDate()
-    }
+    private var counter = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
-// хотел сюда настройки вставить, но передумал
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-      super.viewWillAppear(animated)
-//настройка внешнего вида View
-        updateLabel()
+        updateCounterLabel()
         buttonMinus.tintColor = .blue
         buttonPlus.tintColor = .red
         clearButton.setTitle("Обнулить", for: .normal)
         clearButton.tintColor = .darkGray
-        historyText.text = "История изменений:\n"
-    }
-    @IBAction func clickClearButton(_ sender: Any) {
-        count = 0
-        updateLabel()
-        historyText.text += "\n\(currTime()): \(historyCleared)"
+        historyTextView.text = "История изменений:\n"
     }
     
-    @IBAction func clickButtonMinus(_ sender: Any) {
-
-        guard count > 0 else {
-            historyText.text += "\n\(currTime()): \(historyTryToZero)"
+    private func updateCounterLabel() {
+        counterLabel.text = "Значение счётчика: \(counter)"
+    }
+    
+    private func getCurrentTime() -> String {
+        return Date().getLocalDateInString()
+    }
+    
+    @IBAction private func clickClearButton(_ sender: Any) {
+        counter = 0
+        updateCounterLabel()
+        historyTextView.text += "\n\(getCurrentTime()): \(historyCleared)"
+    }
+    
+    @IBAction private func clickButtonMinus(_ sender: Any) {
+        guard counter > 0 else {
+            historyTextView.text += "\n\(getCurrentTime()): \(historyTryToZero)"
             return
         }
-        count -= 1
-        updateLabel()
-        historyText.text += "\n\(currTime()): \(historyReduced)"
+        counter -= 1
+        updateCounterLabel()
+        historyTextView.text += "\n\(getCurrentTime()): \(historyReduced)"
     }
     
-    @IBAction func clickButtonPlus(_ sender: Any) {
-        count += 1
-        updateLabel()
-        historyText.text += "\n\(currTime()): \(historyIncreased)"
+    @IBAction private func clickButtonPlus(_ sender: Any) {
+        counter += 1
+        updateCounterLabel()
+        historyTextView.text += "\n\(getCurrentTime()): \(historyIncreased)"
     }
-    
-    
 }
-
-
