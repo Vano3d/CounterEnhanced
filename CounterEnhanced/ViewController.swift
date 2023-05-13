@@ -45,6 +45,8 @@ class ViewController: UIViewController {
     
     private func updateCounterLabel() {
         counterLabel.text = "Значение счётчика: \(counter)"
+        let range = NSMakeRange(historyTextView.text.count - 1, 0)
+        historyTextView.scrollRangeToVisible(range)
     }
     
     private func getCurrentTime() -> String {
@@ -60,6 +62,7 @@ class ViewController: UIViewController {
     @IBAction private func clickButtonMinus(_ sender: Any) {
         guard counter > 0 else {
             historyTextView.text += "\n\(getCurrentTime()): \(historyTryToZero)"
+            updateCounterLabel()
             return
         }
         counter -= 1
