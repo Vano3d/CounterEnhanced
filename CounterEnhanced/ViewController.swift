@@ -36,18 +36,22 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         updateCounterLabel()
-        buttonMinus.tintColor = .blue
-        buttonPlus.tintColor = .red
+        buttonMinus.tintColor = .systemCyan
+        buttonPlus.tintColor = .systemRed
         clearButton.setTitle("Обнулить", for: .normal)
-        clearButton.tintColor = .darkGray
+        clearButton.tintColor = .white
+        counterLabel.font = counterLabel.font.withSize(60)
+        historyTextView.font = historyTextView.font?.withSize(14)
         historyTextView.text = "История изменений:\n"
+
     }
     
     private func updateCounterLabel() {
-        counterLabel.text = "Значение счётчика: \(counter)"
+        counterLabel.text = "\(counter)"
         let range = NSMakeRange(historyTextView.text.count - 1, 0)
         historyTextView.scrollRangeToVisible(range)
     }
+    
     
     private func getCurrentTime() -> String {
         return Date().getLocalDateInString()
@@ -56,23 +60,24 @@ class ViewController: UIViewController {
     @IBAction private func clickClearButton(_ sender: Any) {
         counter = 0
         updateCounterLabel()
-        historyTextView.text += "\n\(getCurrentTime()): \(historyCleared)"
+        historyTextView.text += "\n[\(getCurrentTime())]: \(historyCleared)"
     }
     
     @IBAction private func clickButtonMinus(_ sender: Any) {
         guard counter > 0 else {
-            historyTextView.text += "\n\(getCurrentTime()): \(historyTryToZero)"
+            historyTextView.text += "\n[\(getCurrentTime())]: \(historyTryToZero)"
             updateCounterLabel()
             return
         }
         counter -= 1
         updateCounterLabel()
-        historyTextView.text += "\n\(getCurrentTime()): \(historyReduced)"
+        historyTextView.text += "\n[\(getCurrentTime())]: \(historyReduced)"
     }
     
     @IBAction private func clickButtonPlus(_ sender: Any) {
         counter += 1
         updateCounterLabel()
-        historyTextView.text += "\n\(getCurrentTime()): \(historyIncreased)"
+        historyTextView.text += "\n[\(getCurrentTime())]: \(historyIncreased)"
+        counterLabel.backgroundColor = .white
     }
 }
