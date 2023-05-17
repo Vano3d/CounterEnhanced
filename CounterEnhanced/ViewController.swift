@@ -33,17 +33,31 @@ class ViewController: UIViewController {
     
     private var counter = 0
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         updateCounterLabel()
         buttonMinus.tintColor = .systemCyan
         buttonPlus.tintColor = .systemRed
-        clearButton.setTitle("Обнулить", for: .normal)
+        clearButton.setTitle(" Обнулить", for: .normal)
         clearButton.tintColor = .white
         counterLabel.font = counterLabel.font.withSize(60)
         historyTextView.font = historyTextView.font?.withSize(14)
         historyTextView.text = "История изменений:\n"
 
+    }
+    
+    private func changeBackgroundColor(label: UILabel) {
+        label.backgroundColor = .red
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                        label.backgroundColor = .clear
+                    }
+    }
+    
+    private func labelBackGroundFade() {
+        UIView.transition(with: counterLabel, duration: 0.5, options: .transitionCrossDissolve, animations: {
+            self.counterLabel.backgroundColor = .systemRed
+        })
     }
     
     private func updateCounterLabel() {
@@ -67,6 +81,8 @@ class ViewController: UIViewController {
         guard counter > 0 else {
             historyTextView.text += "\n[\(getCurrentTime())]: \(historyTryToZero)"
             updateCounterLabel()
+            labelBackGroundFade()
+            changeBackgroundColor(label: counterLabel)
             return
         }
         counter -= 1

@@ -47,7 +47,7 @@
                                 </constraints>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="filled" title="Button">
-                                    <imageReference key="image" image="eraser.fill" catalog="system" symbolScale="default"/>
+                                    <imageReference key="image" image="xmark" catalog="system" symbolScale="default"/>
                                     <backgroundConfiguration key="background">
                                         <color key="strokeColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </backgroundConfiguration>
@@ -106,9 +106,9 @@
         </scene>
     </scenes>
     <resources>
-        <image name="eraser.fill" catalog="system" width="128" height="119"/>
         <image name="minus" catalog="system" width="128" height="26"/>
         <image name="plus" catalog="system" width="128" height="113"/>
+        <image name="xmark" catalog="system" width="128" height="113"/>
         <systemColor name="labelColor">
             <color red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
