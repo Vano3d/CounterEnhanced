@@ -7,7 +7,7 @@
 
 import UIKit
 
-
+//  Date formatter
 extension Date {
     func getLocalDateInString() -> String {
         let now = Date()
